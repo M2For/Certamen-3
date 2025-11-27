@@ -107,14 +107,22 @@ namespace ProyectoPatentar
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            decimal costo = registroActual.CalcularCostoTotal();
-            MessageBox.Show(
-                $"Registro de marca completado para {registroActual.DatosMarca.NombreMarca} por un costo total de ${costo:N2}. Se ha enviado tu solicitud, estaremos trabajando en proceso tu proceso patentificación, {registroActual.DatosSolicitante.Nombre}.",
-                "Registro Finalizado, ",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+             if (registroActual.DatosSolicitante != null)
+         {
+             decimal costo = registroActual.CalcularCostoTotal();
+             MessageBox.Show(
+                 $"Registro de marca completado para {registroActual.DatosMarca.NombreMarca} por un costo total de ${costo:N2}. Se ha enviado tu solicitud, estaremos trabajando en proceso tu proceso patentificación,{registroActual.DatosSolicitante.Nombre}.",
+                 "Registro Finalizado, ",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Information);
 
-            Application.Exit();
+             Application.Exit();
+         }
+         else
+         {
+             MessageBox.Show("Por favor agregue sus datos en la ventana Datos del solicitante'.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+         }
         }
     }
 }
